@@ -1,0 +1,49 @@
+{* This is the welcome page, you can delete it *}
+
+{block content}
+<div class="min-vw-100 min-vh-100 d-flex flex-column align-items-center">
+
+		<h1 class="py-5">Oscar</h1>
+
+		{control uploadForm}
+
+		{ifset $result}
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Rok</th>
+						<th>Ženy</th>
+						<th>Muži</th>
+					</tr>
+				</thead>
+				{foreach $result[0] as $year => $oscars}
+					<tr>
+						<td>{$year}</td>
+						<td>{$oscars['male']['name']} ({$oscars['male']['age']})<br>{$oscars['male']['movie']}</td>
+						<td>{$oscars['female']['name']} ({$oscars['female']['age']})<br>{$oscars['female']['movie']}</td>
+					</tr>
+				{/foreach}
+			</table>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Název filmu</th>
+						<th>Rok</th>
+						<th>Herečka</th>
+						<th>Herec</th>
+					</tr>
+				</thead>
+				{foreach $result[1] as $year => $oscars}
+					<tr>
+						<td>{$oscars['movie']}</td>
+						<td>{$year}</td>
+						<td>{$oscars['female']}</td>
+						<td>{$oscars['male']}</td>
+					</tr>
+				{/foreach}
+			</table>
+		{else}
+			Žádná data k zobrazení, nahrajte soubory.
+		{/ifset}
+
+</div>
